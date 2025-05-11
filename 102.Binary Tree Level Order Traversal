@@ -1,1 +1,60 @@
+# STATEMENT OF THE PROBLEM 
 
+Given the root of a binary tree, return the length of the diameter of the tree.
+
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+The length of a path between two nodes is represented by the number of edges between them.
+
+===============================================================================================================================================================================
+
+## SOLUTION IN JAVA 
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result=new ArrayList<>(); // array list bani same data type k liye
+        if(root==null) return result; // edge case
+        Queue<TreeNode> q=new LinkedList<>(); // BFS use karne k liye
+        q.add(root); // first step BFS ka 
+        while(q.size()>0){ 
+            int size=q.size();
+            List<Integer> level=new ArrayList<>();
+            while(size-- >0){
+                TreeNode temp=q.remove();
+                level.add(temp.val);
+                if(temp.left!=null){
+                   q.add(temp.left);
+            } 
+                if(temp.right!=null){
+                    q.add(temp.right);
+            }
+        }
+        result.add(level);
+        }
+        return result;
+    }
+}
+
+===============================================================================================================================================================================
+
+## COMPLEXITIES :-
+
+1.)TIME COMPLEXITY :-O(n)
+2.)SPACE COMPLEXITY :- O(n)
+
+===============================================================================================================================================================================
