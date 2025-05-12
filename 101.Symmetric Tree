@@ -1,0 +1,55 @@
+# STATEMENT OF PROBLEM 
+
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+=================================================================================================================================================================================
+
+## SOLUTION IN JAVA 
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root){
+        if(root==null||(root.right==null && root.left==null)) return root;
+        TreeNode l=root.left;
+        TreeNode r=root.right;
+        root.right=invertTree(l);
+        root.left=invertTree(r);
+        return root;
+    }
+    public boolean isSame(TreeNode p,TreeNode q){
+        if(p==null && q==null) return true;
+        if(p==null || q==null) return false;
+        if(p.val!=q.val) return false;
+        return isSame(p.left,q.left) && isSame(p.right,q.right);
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        TreeNode tree=invertTree(root.right);
+        return isSame(root.left,tree);
+        
+    }
+}
+
+
+=================================================================================================================================================================================
+
+## COMPLEXITIES
+
+1.)TIME COMPLEXITY :-O(n)
+2.)SPACE COMPLEXITY :-O(h) , h is height of tree.
+
+=================================================================================================================================================================================
