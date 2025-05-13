@@ -46,7 +46,7 @@ class Solution {
 
 ## COMPLEXITIES :-
 
-1.) Time Complexity :-O(n^2)
+1.) Time Complexity :-O(n^2) (worst case) , O(nlogn) (average and best case)
 2.) Space Complexity :-O(n)
 
 ==================================================================================================================================================================================
