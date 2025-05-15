@@ -1,0 +1,45 @@
+# STATEMENT OF PROBLEM 
+
+Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum. 
+Each path should be returned as a list of the node values, not node references.
+
+A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
+
+===============================================================================================================================================================================
+
+## SOLUTION IN JAVA 
+
+class Solution {
+    public void helper(TreeNode root, int targetSum, List<Integer> arr, List<List<Integer>> ans) {
+        if (root == null) return;
+
+        arr.add(root.val);
+
+        if (root.left == null && root.right == null) {
+            if (targetSum == root.val) {
+                ans.add(new ArrayList<>(arr));
+            }
+        } else {
+            helper(root.left, targetSum - root.val, arr, ans);
+            helper(root.right, targetSum - root.val, arr, ans);
+        }
+
+        arr.remove(arr.size() - 1); // backtracking
+    }
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
+        helper(root, targetSum, arr, ans);
+        return ans;
+    }
+}
+
+===============================================================================================================================================================================
+
+## COMPLEXITIES :-
+
+1.)TIME COMPLEXITY :-O(n^2) , O(n * (H * L))
+2.)SPACE COMPLEXITY :-O() , O(n * (H * L))
+
+===============================================================================================================================================================================
